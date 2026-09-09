@@ -1,6 +1,7 @@
 import validator from "validator";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
+import crypto from "crypto";
 
 const userSchema = new mongoose.Schema(
   {
@@ -56,7 +57,7 @@ const userSchema = new mongoose.Schema(
     },
     passwordChangedAt: Date,
     passwordResetToken: String,
-    passwordResetExpires: Date
+    passwordResetExpires: Date,
   },
   {
     timestamps: true,

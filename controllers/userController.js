@@ -57,6 +57,11 @@ export async function updateMe(req, res, next) {
   });
 }
 
+export function getMe(req, res, next) {
+  req.params.id = req.user._id;
+  next();
+}
+
 export async function deleteMe(req, res, next) {
   const user = await User.findById(req.user._id);
   if (!user) {

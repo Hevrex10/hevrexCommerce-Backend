@@ -35,7 +35,7 @@ const orderSchema = new mongoose.Schema(
     },
 
     shippingAddress: {
-      fullname: {
+      fullName: {
         type: String,
         required: true,
       },

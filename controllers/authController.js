@@ -4,6 +4,7 @@ import { sendEmail } from "../utils/email.js";
 import generateToken from "../utils/tokenUtils.js";
 import { promisify } from "util";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
 
 export async function signup(req, res, next) {
   const newUser = await User.create({
@@ -88,8 +89,19 @@ export async function protect(req, res, next) {
   next();
 }
 
+export function restrictTo(...roles) {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError("You do not have permission to perform this action", 403),
+      );
+    }
+    next();
+  };
+}
+
 export async function forgotPassword(req, res, next) {
-  const user = User.findOne({ email: req.body.email });
+  const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
     return next(new AppError("There is no user with email Address.", 404));
@@ -121,7 +133,10 @@ If you didn't forget your password, please ignore this email.`;
   } catch (err) {
     console.log(err);
     ((user.passwordResetToken = undefined),
+      /////
       (user.passwordResetExpires = undefined),
+      /////////
+      /////
       await user.save({ validateBeforeSave: false }));
 
     return next(
@@ -150,6 +165,10 @@ export async function resetPassword(req, res, next) {
 
   user.password = req.body.password;
   user.passwordConfirm = req.body.passwordConfirm;
+
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+
   await user.save();
 
   const token = generateToken(user._id);
@@ -159,12 +178,13 @@ export async function resetPassword(req, res, next) {
     token,
   });
 }
+
 export async function updatePassword(req, res, next) {
   const user = await User.findById(req.user._id).select(+password);
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password)))
     return next(new AppError("Your current password is incorrect", 401));
   user.password = req.body.password;
-  user.passwordCorrect = req.body.passwordConfirm;
+  user.passwordConfirm = req.body.passwordConfirm;
 
   await user.save();
 

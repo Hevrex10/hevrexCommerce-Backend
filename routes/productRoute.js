@@ -7,17 +7,20 @@ import {
   deleteProduct,
 } from "../controllers/productController.js";
 import productReviewRouter from "./productReviewRoute.js";
-import {protect} from "../controllers/authController.js";
+import { protect, restrictTo } from "../controllers/authController.js";
 
 const router = express.Router();
 
-router.route("/").get(getAllProduct).post(protect, createProduct);
+router
+  .route("/")
+  .get(getAllProduct)
+  .post(protect, restrictTo("admin"), createProduct);
 
 router
   .route("/:id")
   .get(getProduct)
-  .patch(protect, updateProduct)
-  .delete(protect, deleteProduct);
+  .patch(protect, restrictTo("admin"), updateProduct)
+  .delete(protect, restrictTo("admin"),deleteProduct);
 
 router.use("/:productId/reviews", productReviewRouter);
 
