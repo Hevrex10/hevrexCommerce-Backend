@@ -1,0 +1,134 @@
+[
+  {
+    "name": "Classic Monochrome Tee",
+    "price": 25,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733701/classic-monchrome-tees.png",
+    "description": "A timeless black t-shirt designed for everyday wear and comfort.",
+    "category": "Apparel",
+    "colors": ["Black", "Dark Gray", "Charcoal"],
+    "sizes": ["S", "M", "L", "XL"],
+    "tags": ["t-shirt", "black", "classic"],
+    "stock": 25
+  },
+  {
+    "name": "Urban Oversized Fit",
+    "price": 30,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733604/cover.png",
+    "description": "Relaxed oversized gray tee for modern streetwear enthusiasts.",
+    "category": "Apparel",
+    "colors": ["Gray", "Light Gray", "Dark Gray"],
+    "sizes": ["M", "L", "XL", "XXL"],
+    "tags": ["oversized", "streetwear", "gray"],
+    "stock": 18
+  },
+  {
+    "name": "Essential Neutrals",
+    "price": 22,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733708/essential-neutrals.png",
+    "description": "Everyday basic tee made for ultimate comfort and simplicity.",
+    "category": "Apparel",
+    "colors": ["Blue", "Gray", "Cream"],
+    "sizes": ["S", "M", "L", "XL"],
+    "tags": ["basic", "t-shirt", "neutral"],
+    "stock": 30
+  },
+  {
+    "name": "Raw Black T-Shirt",
+    "price": 28,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733703/raw-blacck-tees.png",
+    "description": "Raw-cut black t-shirt that blends edge and comfort.",
+    "category": "Apparel",
+    "colors": ["Black", "Dark Gray", "Navy"],
+    "sizes": ["S", "M", "L", "XL"],
+    "tags": ["raw", "casual", "black"],
+    "stock": 15
+  },
+  {
+    "name": "Elegant Ebony Sweatshirt",
+    "price": 45,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733707/elegant-ebony-ss.png",
+    "description": "A soft and comfortable sweatshirt with a clean modern design.",
+    "category": "Sweatshirts",
+    "colors": ["Cream", "Yellow", "White"],
+    "sizes": ["S", "M", "L"],
+    "tags": ["minimal", "neutral", "sweatshirt"],
+    "stock": 12
+  },
+  {
+    "name": "Sleek and Cozy Hoodie",
+    "price": 50,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733707/sleekandcozy-black.png",
+    "description": "A lightweight hoodie designed for everyday comfort.",
+    "category": "Hoodies",
+    "colors": ["Light Gray", "White", "Stone"],
+    "sizes": ["S", "M", "L", "XL"],
+    "tags": ["comfort", "casual", "hoodie"],
+    "stock": 20
+  },
+  {
+    "name": "Bold Streetwear",
+    "price": 32,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733703/mockup-black.png",
+    "description": "Statement piece for those who love expressive street fashion.",
+    "category": "Streetwear",
+    "colors": ["Black", "Orange", "Blue"],
+    "sizes": ["M", "L", "XL"],
+    "tags": ["streetwear", "bold", "graphic"],
+    "stock": 10
+  },
+  {
+    "name": "Eco Cotton",
+    "price": 27,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733703/bikini-skirt.png",
+    "description": "Sustainably made t-shirt using premium organic cotton.",
+    "category": "Apparel",
+    "colors": ["Green", "Lime", "Yellow"],
+    "sizes": ["S", "M", "L"],
+    "tags": ["eco", "organic", "cotton"],
+    "stock": 22
+  },
+  {
+    "name": "Athletic Flex Tee",
+    "price": 29,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733701/Athletiic-shirt.png",
+    "description": "Performance t-shirt built for workouts and casual wear.",
+    "category": "Sportswear",
+    "colors": ["Navy", "Blue", "Gray"],
+    "sizes": ["S", "M", "L", "XL"],
+    "tags": ["active", "sports", "flex"],
+    "stock": 17
+  },
+  {
+    "name": "Classic Crew Neck",
+    "price": 21,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733708/monochromatic-wardrobe.png",
+    "description": "Simple crew neck tee for timeless everyday looks.",
+    "category": "Apparel",
+    "colors": ["Blue", "Black"],
+    "sizes": ["S", "M", "L"],
+    "tags": ["crewneck", "classic", "everyday"],
+    "stock": 28
+  },
+  {
+    "name": "Vintage Wash Tee",
+    "price": 35,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733702/classic-monchrome-blue.png",
+    "description": "Retro-inspired washed tee with a worn-in look.",
+    "category": "Vintage",
+    "colors": ["Blue", "Gray", "Black"],
+    "sizes": ["M", "L", "XL"],
+    "tags": ["vintage", "retro", "washed"],
+    "stock": 14
+  },
+  {
+    "name": "UrbanFlex Shirt",
+    "price": 33,
+    "image": "https://res.cloudinary.com/uo8djqlu/image/upload/v1788733604/cover.png",
+    "description": "Relaxed-fit shirt made with premium stretch cotton.",
+    "category": "Apparel",
+    "colors": ["Blue", "Cream", "Brown"],
+    "sizes": ["S", "M", "L", "XL"],
+    "tags": ["premium", "relaxed", "cotton"],
+    "stock": 19
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "user": "6a9efacd81dc90adfa95049b",
+  "items": [
+    {
+      "product": "6a9df844259042b4413e58dd",
+      "quantity": 2,
+      "price": 28
+    },
+    {
+      "product": "6a9df844259042b4413e58de",
+      "quantity": 1,
+      "price": 45
+    }
+  ],
+  "shippingAddress": {
+    "fullname": "Emmanuel Ade",
+    "phone": "08012345678",
+    "address": "15 Main Street",
+    "city": "Lagos",
+    "state": "Lagos",
+    "country": "Nigeria"
+  },
+  "totalPrice": 101,
+  "status": "pending"
+}
