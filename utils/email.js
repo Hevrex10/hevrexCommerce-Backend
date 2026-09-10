@@ -16,7 +16,7 @@ export async function sendEmail(options) {
   });
 
   const mailOptions = {
-    from: `My Ecommerce App <${process.env.EMAIL_FROM}>`,
+    from: `My Ecommerce App. <${process.env.EMAIL_FROM}>`,
     to: options.email,
     subject: options.subject,
     text: options.message,
