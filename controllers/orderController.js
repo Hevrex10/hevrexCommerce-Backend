@@ -58,6 +58,8 @@ export async function createOrder(req, res, next) {
 
     const itemTotal = product.price * item.quantity;
     totalPrice += itemTotal;
+    product.stock -= item.quantity;
+    await product.save();
 
     orderItems.push({
       product: product._id,
@@ -74,6 +76,73 @@ export async function createOrder(req, res, next) {
   });
 
   res.status(201).json({
+    status: "success",
+    data: {
+      order,
+    },
+  });
+}
+
+export async function getOrder(req, res, next) {
+  const order = await Order.findById(req.params.id);
+
+  if (!order) {
+    return next(new AppError("No order found with that ID", 404));
+  }
+  if (
+    order.user.toString() !== req.user._id.toString() &&
+    req.user.role !== "admin"
+  ) {
+    return next(new AppError("You are not allowed to view this order", 403));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      order,
+    },
+  });
+}
+
+export async function updateOrderStatus(req, res, next) {
+  const order = await Order.findById(req.params.id);
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      order,
+    },
+  });
+
+  order.status = req.body.status;
+  await order.save();
+  res.status(200).json({
+    status: "success",
+    data: {
+      order,
+    },
+  });
+}
+
+export async function cancelOrder(req, res, next) {
+  const order = await Order.findOne({
+    _id: req.params.id,
+    user: req.user._id,
+  });
+
+  if (!order) {
+    return next(new AppError("Order not found", 404));
+  }
+
+  if (order.status !== "pending") {
+    return next(new AppError("Only pending orders can be cancelled", 400));
+  }
+
+  order.status = "cancelled";
+
+  await order.save();
+
+  res.status(200).json({
     status: "success",
     data: {
       order,

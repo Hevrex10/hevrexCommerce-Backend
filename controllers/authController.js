@@ -141,7 +141,7 @@ If you didn't forget your password, please ignore this email.`;
 
     return next(
       new AppError(
-        "There was an error sending the email. Please try again later.",
+        "There was an error sending the  email. Please try again later.",
         500,
       ),
     );
@@ -180,7 +180,7 @@ export async function resetPassword(req, res, next) {
 }
 
 export async function updatePassword(req, res, next) {
-  const user = await User.findById(req.user._id).select(+password);
+  const user = await User.findById(req.user._id).select("+password");
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password)))
     return next(new AppError("Your current password is incorrect", 401));
   user.password = req.body.password;
