@@ -41,5 +41,19 @@ const productSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+productSchema.virtual("reviews", {
+  ref: "Review",
+  foreignField: "product",
+  localField: "_id",
+});
+productSchema.set("toJSON", { virtuals: true });
+productSchema.set("toObject", { virtuals: true });
+
+productSchema.pre(/^find/, function (next) {
+  this.populate("reviews");
+  next();
+});
+
 const Product = mongoose.model("Product", productSchema);
 export default Product;
