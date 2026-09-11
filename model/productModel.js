@@ -50,9 +50,8 @@ productSchema.virtual("reviews", {
 productSchema.set("toJSON", { virtuals: true });
 productSchema.set("toObject", { virtuals: true });
 
-productSchema.pre(/^find/, function (next) {
+productSchema.pre(/^find/, function () {
   this.populate("reviews");
-  next();
 });
 
 const Product = mongoose.model("Product", productSchema);
