@@ -25,7 +25,7 @@ export async function getCart(req, res, next) {
 }
 
 export async function addToCart(req, res, next) {
-  const { product, quantity } = req.body;
+  const { product, quantity, size, color } = req.body;
 
   let cart = await Cart.findOne({
     user: req.user._id,
@@ -38,7 +38,8 @@ export async function addToCart(req, res, next) {
         {
           product,
           quantity,
-          size
+          size,
+          color,
         },
       ],
     });
@@ -51,6 +52,8 @@ export async function addToCart(req, res, next) {
       cart.items.push({
         product,
         quantity,
+        size,
+        color
       });
     }
 
