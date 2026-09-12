@@ -14,7 +14,7 @@ export async function getAllReview(req, res, next) {
 export async function getReview(req, res, next) {
   const review = await Review.findById(req.params.id)
     .populate("product")
-    .populate("user","name");
+    .populate("user");
 
   if (!review) {
     return next("No review found with that ID", 400);
@@ -66,7 +66,8 @@ export async function updateReview(req, res, next) {
 export async function getProductReviews(req, res, next) {
   const reviews = await Review.find({
     product: req.params.productId,
-  });
+  }).populate("user", "name");
+
   res.status(200).json({
     status: "success",
     results: reviews.length,
