@@ -49,7 +49,10 @@ export async function updateProduct(req, res, next) {
 }
 
 export async function getProduct(req, res, next) {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id).populate(
+    "user",
+    "name",
+  );
 
   if (!product) {
     return next(new AppError("No product found with that ID", 404));
