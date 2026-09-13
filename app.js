@@ -9,6 +9,7 @@ import cartRouter from "./routes/cartRoute.js";
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/users", userRouter);

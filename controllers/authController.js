@@ -15,11 +15,15 @@ export async function signup(req, res, next) {
   });
 
   const token = generateToken(newUser._id);
+  res.cookie("jwt", token, {
+    httpOnly: true,
+    secure: false,
+  });
+
   newUser.password = undefined;
 
   res.status(201).json({
     status: "success",
-    token,
     data: {
       user: newUser,
     },
@@ -39,14 +43,14 @@ export async function login(req, res, next) {
   }
 
   const token = generateToken(user._id);
+
   res.cookie("jwt", token, {
-    hhtpOnly: true,
+    httpOnly: true,
     secure: false,
   });
 
   res.status(200).json({
     status: "success",
-    token,
   });
 }
 
