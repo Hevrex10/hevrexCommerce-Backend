@@ -65,8 +65,7 @@ export async function updateReview(req, res, next) {
 
 export async function getProductReviews(req, res, next) {
   const reviews = await Review.find({
-    product: req.params.productId,
-  }).populate("user", "name photo");
+    product: req.params.productId,});
 
   res.status(200).json({
     status: "success",
