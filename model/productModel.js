@@ -51,7 +51,13 @@ productSchema.set("toJSON", { virtuals: true });
 productSchema.set("toObject", { virtuals: true });
 
 productSchema.pre(/^find/, function () {
-  this.populate("reviews");
+  this.populate({
+    path: "reviews",
+    populate: {
+      path: "user",
+      select: "name photo",
+    },
+  });
 });
 
 const Product = mongoose.model("Product", productSchema);
