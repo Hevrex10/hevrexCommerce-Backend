@@ -46,7 +46,8 @@ export async function login(req, res, next) {
 
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: false,
+    secure: true,
+    sameSite:"none"
   });
 
   res.status(200).json({
