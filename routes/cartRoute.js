@@ -4,6 +4,7 @@ import {
   addToCart,
   removeFromCart,
   clearCart,
+  updateCartQuantity,
 } from "../controllers/cartController.js";
 import { protect } from "../controllers/authController.js";
 
@@ -15,6 +16,7 @@ router
   .post(protect, addToCart)
   .delete(protect, clearCart);
 
-router.delete("/:productId",protect, removeFromCart);
+router.delete("/:productId", protect, removeFromCart);
+router.patch("/:productId", protect, updateCartQuantity);
 
 export default router;

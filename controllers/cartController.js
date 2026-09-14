@@ -117,3 +117,37 @@ export async function clearCart(req, res, next) {
     },
   });
 }
+
+export async function updateCartQuantity(req, res, next) {
+  const { productId } = req.params;
+  const { quantity } = req.body;
+
+  const cart = await Cart.findOne({
+    user: req.user._id,
+  });
+
+  if (!cart) {
+    return next(new AppError("Cart not found", 404));
+  }
+
+  const item = cart.items.find(
+    (item) => item.product.toString() === productId,
+  );
+
+  if (!item) {
+    return next(new AppError("Product not found in cart", 404));
+  }
+
+  item.quantity = quantity;
+
+  await cart.save();
+
+  await cart.populate("items.product");
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      cart,
+    },
+  });
+}
