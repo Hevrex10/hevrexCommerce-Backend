@@ -86,9 +86,7 @@ export async function removeFromCart(req, res, next) {
     return next(new AppError("Cart not found", 404));
   }
 
-  cart.items = cart.items.filter(
-    (item) => item.product.toString() !== cartItemId,
-  );
+  cart.items = cart.items.filter((item) => item._id.toString() !== cartItemId);
 
   await cart.save();
 
