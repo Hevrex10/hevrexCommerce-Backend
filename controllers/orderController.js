@@ -65,6 +65,8 @@ export async function createOrder(req, res, next) {
       product: product._id,
       quantity: item.quantity,
       price: product.price,
+      size: product.size,
+      color: product.color,
     });
   }
 

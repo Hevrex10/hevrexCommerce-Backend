@@ -15,15 +15,21 @@ const orderSchema = new mongoose.Schema(
           ref: "Product",
           required: true,
         },
-
         quantity: {
           type: Number,
           required: true,
           min: 1,
         },
-
         price: {
           type: Number,
+          required: true,
+        },
+        size: {
+          type: String,
+          required: true,
+        },
+        color: {
+          type: String,
           required: true,
         },
       },
@@ -76,9 +82,6 @@ const orderSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
-
-
-
 
 const Order = mongoose.model("Order", orderSchema);
 export default Order;
