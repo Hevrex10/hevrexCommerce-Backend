@@ -44,7 +44,12 @@ export async function addToCart(req, res, next) {
       ],
     });
   } else {
-    const existingItem = cart.items.find((item) => item.product === product);
+    const existingItem = cart.items.find(
+      (item) =>
+        item.product.equals(product) &&
+        item.size === size &&
+        item.color === color,
+    );
 
     if (existingItem) {
       existingItem.quantity += quantity;
@@ -53,7 +58,7 @@ export async function addToCart(req, res, next) {
         product,
         quantity,
         size,
-        color
+        color,
       });
     }
 
@@ -130,9 +135,7 @@ export async function updateCartQuantity(req, res, next) {
     return next(new AppError("Cart not found", 404));
   }
 
-  const item = cart.items.find(
-    (item) => item.product.toString() === productId,
-  );
+  const item = cart.items.find((item) => item.product.toString() === productId);
 
   if (!item) {
     return next(new AppError("Product not found in cart", 404));
