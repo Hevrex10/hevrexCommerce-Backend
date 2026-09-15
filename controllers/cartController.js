@@ -46,7 +46,7 @@ export async function addToCart(req, res, next) {
   } else {
     const existingItem = cart.items.find(
       (item) =>
-        item.product === product() &&
+        item.product.equals(product) &&
         item.size === size &&
         item.color === color,
     );
