@@ -69,7 +69,6 @@ export async function addToCart(req, res, next) {
 
   res.status(200).json({
     status: "success",
-    result: cart.length,
     data: {
       cart,
     },
