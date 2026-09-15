@@ -16,7 +16,7 @@ router
   .post(protect, addToCart)
   .delete(protect, clearCart);
 
-router.delete("/:productId", protect, removeFromCart);
+router.delete("/:cartItemId", protect, removeFromCart);
 router.patch("/:productId", protect, updateCartQuantity);
 
 export default router;

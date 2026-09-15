@@ -76,7 +76,7 @@ export async function addToCart(req, res, next) {
 }
 
 export async function removeFromCart(req, res, next) {
-  const { productId } = req.params;
+  const { cartItemId } = req.params;
 
   const cart = await Cart.findOne({
     user: req.user._id,
@@ -87,7 +87,7 @@ export async function removeFromCart(req, res, next) {
   }
 
   cart.items = cart.items.filter(
-    (item) => item.product.toString() !== productId,
+    (item) => item.product.toString() !== cartItemId,
   );
 
   await cart.save();
