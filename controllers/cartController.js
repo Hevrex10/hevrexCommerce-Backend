@@ -46,7 +46,7 @@ export async function addToCart(req, res, next) {
   } else {
     const existingItem = cart.items.find(
       (item) =>
-        item.product.equals(product) &&
+        item.product === product() &&
         item.size === size &&
         item.color === color,
     );
@@ -69,6 +69,7 @@ export async function addToCart(req, res, next) {
 
   res.status(200).json({
     status: "success",
+    result: cart.length,
     data: {
       cart,
     },
