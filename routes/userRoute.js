@@ -9,6 +9,7 @@ import {
 import {
   signup,
   login,
+  logout,
   forgotPassword,
   resetPassword,
   updatePassword,
@@ -22,7 +23,7 @@ const router = express.Router();
 ///Public
 router.post("/signup", signup);
 router.post("/login", login);
-router.post("/logout", logout)
+router.post("/logout", logout);
 router.post("/forgotPassword", forgotPassword);
 router.patch("/resetPassword/:token", resetPassword);
 
