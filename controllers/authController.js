@@ -47,7 +47,7 @@ export async function login(req, res, next) {
   res.cookie("jwt", token, {
     httpOnly: true,
     secure: true,
-    sameSite:"none"
+    sameSite: "none",
   });
 
   res.status(200).json({
@@ -197,5 +197,18 @@ export async function updatePassword(req, res, next) {
   res.status(200).json({
     status: "success",
     token,
+  });
+}
+export function logout(req, res) {
+  res.cookie("jwt", "", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    expires: new Date(0),
+  });
+
+  res.status(200).json({
+    status: "success",
+    message: "Logged out successfully",
   });
 }
