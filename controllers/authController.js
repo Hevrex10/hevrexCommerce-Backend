@@ -114,6 +114,7 @@ export async function forgotPassword(req, res, next) {
   }
 
   const resetToken = user.createPasswordResetToken();
+
   await user.save({ validateBeforeSave: false });
 
   const resetURL = `${req.protocol}://${req.get("host")}/api/v1/users/resetpassword/${resetToken}`;
@@ -137,7 +138,8 @@ If you didn't forget your password, please ignore this email.`;
       subject: "Token sent to the mail",
     });
   } catch (err) {
-    console.log(err);
+    console.log("EMAIL ERROR:", err);
+
     ((user.passwordResetToken = undefined),
       /////
       (user.passwordResetExpires = undefined),
