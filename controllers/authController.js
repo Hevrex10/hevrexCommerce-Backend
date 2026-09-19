@@ -20,7 +20,7 @@ export async function signup(req, res, next) {
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     path: "/",
-    maxAge: 7 * 24 * 60 * 60 * 1000
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
   newUser.password = undefined;
@@ -51,7 +51,7 @@ export async function login(req, res, next) {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-    maxAge: 7 * 24 * 60 * 60 * 1000
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
   res.status(200).json({
@@ -60,6 +60,8 @@ export async function login(req, res, next) {
 }
 
 export async function protect(req, res, next) {
+  console.log("COOKIE:", req.cookies);
+  console.log("AUTHORIZATION:", req.headers.authorization);
   let token;
 
   if (
