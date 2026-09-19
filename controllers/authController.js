@@ -17,7 +17,10 @@ export async function signup(req, res, next) {
   const token = generateToken(newUser._id);
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: false,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    path: "/",
+    maxAge: 7 * 24 * 60 * 60 * 1000
   });
 
   newUser.password = undefined;
@@ -48,6 +51,7 @@ export async function login(req, res, next) {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    maxAge: 7 * 24 * 60 * 60 * 1000
   });
 
   res.status(200).json({
@@ -205,8 +209,9 @@ export async function updatePassword(req, res, next) {
 export function logout(req, res) {
   res.cookie("jwt", "", {
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    path: "/",
     expires: new Date(0),
   });
 
