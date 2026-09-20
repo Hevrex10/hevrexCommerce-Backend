@@ -62,8 +62,6 @@ export async function login(req, res, next) {
 }
 
 export async function protect(req, res, next) {
-  console.log("COOKIE:", req.cookies);
-  console.log("AUTHORIZATION:", req.headers.authorization);
   let token;
 
   if (
