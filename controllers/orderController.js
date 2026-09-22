@@ -3,7 +3,7 @@ import AppError from "../utils/appError.js";
 import Product from "../model/productModel.js";
 
 export async function getAllOrder(req, res, next) {
-  const orders = await Order.find();
+  const orders = await Order.find().populate("items.product");
 
   res.status(200).json({
     status: "success",
