@@ -1,6 +1,7 @@
 import Product from "../model/productModel.js";
 import APIFeatures from "../utils/apiFeatures.js";
 import AppError from "../utils/appError.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export async function getAllProduct(req, res, next) {
   const features = new APIFeatures(Product.find(), req.query)
@@ -18,9 +19,6 @@ export async function getAllProduct(req, res, next) {
     },
   });
 }
-
-import Product from "../models/productModel.js";
-import cloudinary from "../utils/cloudinary.js";
 
 export async function createProduct(req, res, next) {
   try {
