@@ -42,14 +42,23 @@ export async function createProduct(req, res, next) {
           } else {
             resolve(result);
           }
-        }
+        },
       );
 
       uploadStream.end(req.file.buffer);
     });
 
     const product = await Product.create({
-      ...req.body,
+      name: req.body.name,
+      price: Number(req.body.price),
+      stock: Number(req.body.stock),
+      category: req.body.category,
+      description: req.body.description,
+
+      colors: JSON.parse(req.body.colors || "[]"),
+      sizes: JSON.parse(req.body.sizes || "[]"),
+      tags: JSON.parse(req.body.tags || "[]"),
+
       image: result.secure_url,
     });
 
@@ -83,7 +92,7 @@ export async function updateProduct(req, res, next) {
 }
 
 export async function getProduct(req, res, next) {
-  const product = await Product.findById(req.params.id)
+  const product = await Product.findById(req.params.id);
 
   if (!product) {
     return next(new AppError("No product found with that ID", 404));
