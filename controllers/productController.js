@@ -19,15 +19,49 @@ export async function getAllProduct(req, res, next) {
   });
 }
 
-export async function createProduct(req, res, next) {
-  const product = await Product.create(req.body);
+import Product from "../models/productModel.js";
+import cloudinary from "../utils/cloudinary.js";
 
-  res.status(201).json({
-    status: "success",
-    data: {
-      product,
-    },
-  });
+export async function createProduct(req, res, next) {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        status: "fail",
+        message: "Please upload a product image",
+      });
+    }
+
+    const result = await new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        {
+          folder: "rexcommerce/products",
+        },
+        (error, result) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(result);
+          }
+        }
+      );
+
+      uploadStream.end(req.file.buffer);
+    });
+
+    const product = await Product.create({
+      ...req.body,
+      image: result.secure_url,
+    });
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        product,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
 }
 
 export async function updateProduct(req, res, next) {
