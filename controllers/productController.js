@@ -24,6 +24,8 @@ import cloudinary from "../utils/cloudinary.js";
 
 export async function createProduct(req, res, next) {
   try {
+    console.log("BODY:", req.body);
+    console.log("FILE:", req.file);
     if (!req.file) {
       return res.status(400).json({
         status: "fail",
